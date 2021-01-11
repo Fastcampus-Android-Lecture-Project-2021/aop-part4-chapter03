@@ -10,19 +10,23 @@ import kotlinx.android.synthetic.main.viewholder_search_result_item.view.*
 class SearchRecyclerAdapter : RecyclerView.Adapter<SearchRecyclerAdapter.SearchResultItemViewHolder>() {
 
     private var searchResultList: List<SearchResultEntity> = listOf()
+    lateinit var searchResultClickListener: (SearchResultEntity) -> Unit
 
-    class SearchResultItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SearchResultItemViewHolder(itemView: View, val searchResultClickListener: (SearchResultEntity) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
         fun bindData(data: SearchResultEntity) = with(itemView) {
             textTextView.text = "${data.fullAdress}"
             subtextTextView.text = "${data.buildingName}"
+            setOnClickListener {
+                searchResultClickListener(data)
+            }
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
-        return SearchResultItemViewHolder(view)
+        return SearchResultItemViewHolder(view, searchResultClickListener)
     }
 
     override fun getItemViewType(position: Int): Int = R.layout.viewholder_search_result_item
@@ -33,8 +37,9 @@ class SearchRecyclerAdapter : RecyclerView.Adapter<SearchRecyclerAdapter.SearchR
 
     override fun getItemCount(): Int = searchResultList.size
 
-    fun setSearchResultList(searchResultList: List<SearchResultEntity>) {
+    fun setSearchResultList(searchResultList: List<SearchResultEntity>, searchResultClickListener: (SearchResultEntity) -> Unit) {
         this.searchResultList = searchResultList
+        this.searchResultClickListener = searchResultClickListener
         notifyDataSetChanged()
     }
 

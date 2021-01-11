@@ -1,10 +1,12 @@
 package com.fastcampus.aop_part4_chatper03
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.fastcampus.aop_part4_chatper03.MapActivity.Companion.SEARCH_RESULT_EXTRA_KEY
 import com.fastcampus.aop_part4_chatper03.model.poi.schema.Poi
 import com.fastcampus.aop_part4_chatper03.model.poi.schema.Pois
 import com.fastcampus.aop_part4_chatper03.model.poi.schema.entity.LocationLatLngEntity
@@ -45,14 +47,20 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     }
 
     private fun setData(pois: Pois) {
-        val data = pois.poi.map {
+        val dataList = pois.poi.map {
             SearchResultEntity(
                 fullAdress = makeMainAdress(it),
                 buildingName = it.name ?: "",
                 locationLatLng = LocationLatLngEntity(it.noorLat, it.noorLon)
             )
         }
-        adapter.setSearchResultList(data)
+        adapter.setSearchResultList(dataList) {
+            startActivity(
+                Intent(this, MapActivity::class.java).apply {
+                    putExtra(SEARCH_RESULT_EXTRA_KEY, it)
+                }
+            )
+        }
     }
 
     private fun searchKeyword(keywordString: String) {
