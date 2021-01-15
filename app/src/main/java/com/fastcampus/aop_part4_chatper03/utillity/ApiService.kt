@@ -2,8 +2,8 @@ package com.fastcampus.aop_part4_chatper03.utillity
 
 import com.fastcampus.aop_part4_chatper03.KEY
 import com.fastcampus.aop_part4_chatper03.URL
-import com.fastcampus.aop_part4_chatper03.model.poi.schema.SearchPoiInfo
-import com.fastcampus.aop_part4_chatper03.model.poi.schema.SearchResponse
+import com.fastcampus.aop_part4_chatper03.model.poi.schema.response.address.AddressInfoResponse
+import com.fastcampus.aop_part4_chatper03.model.poi.schema.response.search.SearchResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -29,4 +29,15 @@ interface ApiService {
         @Query("centerLon") centerLon: String? = null,
         @Query("centerLat") centerLat: String? = null
     ): Response<SearchResponse>
+
+    @GET(URL.GET_TMAP_REVERSE_GEO_CODE)
+    suspend fun getReverseGeoCode(
+        @Header("appKey") appKey: String = KEY.TMAP_API,
+        @Query("version") version: Int = 1,
+        @Query("callback") callback: String? = null,
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("coordType") coordType: String? = null,
+        @Query("addressType") addressType: String? = null
+    ): Response<AddressInfoResponse>
 }

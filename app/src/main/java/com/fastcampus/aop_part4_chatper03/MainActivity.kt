@@ -7,8 +7,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.fastcampus.aop_part4_chatper03.MapActivity.Companion.SEARCH_RESULT_EXTRA_KEY
-import com.fastcampus.aop_part4_chatper03.model.poi.schema.Poi
-import com.fastcampus.aop_part4_chatper03.model.poi.schema.Pois
+import com.fastcampus.aop_part4_chatper03.model.poi.schema.response.search.Poi
+import com.fastcampus.aop_part4_chatper03.model.poi.schema.response.search.Pois
 import com.fastcampus.aop_part4_chatper03.model.poi.schema.entity.LocationLatLngEntity
 import com.fastcampus.aop_part4_chatper03.model.poi.schema.entity.SearchResultEntity
 import com.fastcampus.aop_part4_chatper03.utillity.RetrofitUtil
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         val dataList = pois.poi.map {
             SearchResultEntity(
                 fullAdress = makeMainAdress(it),
-                buildingName = it.name ?: "",
+                name = it.name ?: "",
                 locationLatLng = LocationLatLngEntity(it.noorLat, it.noorLon)
             )
         }

@@ -16,7 +16,7 @@ class SearchRecyclerAdapter : RecyclerView.Adapter<SearchRecyclerAdapter.SearchR
 
         fun bindData(data: SearchResultEntity) = with(itemView) {
             textTextView.text = "${data.fullAdress}"
-            subtextTextView.text = "${data.buildingName}"
+            subtextTextView.text = "${data.name}"
             setOnClickListener {
                 searchResultClickListener(data)
             }
