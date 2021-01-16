@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="fastcampus.aop.part4.chapter03.MainActivity">
 
     <EditText
         android:id="@+id/searchBarInputView"

@@ -6,11 +6,11 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.fastcampus.aop_part4_chatper03"
-        minSdkVersion 21
+        applicationId "fastcampus.aop.part4.chapter03"
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
