@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.aop.aop_part4_chatper03">
+    package="fastcampus.aop.part4.chapter03">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,14 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aoppart4chapter03">
-        <activity android:name="com.aop.aop_part4_chatper03.fastcampus.aop.aop_part4_chatper03.MainActivity">
+        <activity android:name="fastcampus.aop.part4.chapter03.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.aop.aop_part4_chatper03.fastcampus.aop.aop_part4_chatper03.MapActivity" />
+        <activity android:name="fastcampus.aop.part4.chapter03.MapActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

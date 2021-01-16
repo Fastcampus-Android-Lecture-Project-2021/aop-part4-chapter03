@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.aop.aop_part4_chatper03.R
 import fastcampus.aop.part4.chapter03.model.poi.schema.entity.LocationLatLngEntity
 import fastcampus.aop.part4.chapter03.model.poi.schema.entity.SearchResultEntity
 import fastcampus.aop.part4.chapter03.utillity.RetrofitUtil

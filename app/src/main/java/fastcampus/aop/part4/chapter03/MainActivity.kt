@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import com.aop.aop_part4_chatper03.R
 import fastcampus.aop.part4.chapter03.MapActivity.Companion.SEARCH_RESULT_EXTRA_KEY
 import fastcampus.aop.part4.chapter03.model.poi.schema.response.search.Poi
 import fastcampus.aop.part4.chapter03.model.poi.schema.response.search.Pois

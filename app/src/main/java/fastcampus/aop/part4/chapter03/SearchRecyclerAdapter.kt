@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aop.aop_part4_chatper03.R
 import fastcampus.aop.part4.chapter03.model.poi.schema.entity.SearchResultEntity
 import kotlinx.android.synthetic.main.viewholder_search_result_item.view.*
 
