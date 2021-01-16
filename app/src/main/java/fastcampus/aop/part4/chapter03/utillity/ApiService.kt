@@ -1,7 +1,7 @@
 package fastcampus.aop.part4.chapter03.utillity
 
-import fastcampus.aop.part4.chapter03.KEY
-import fastcampus.aop.part4.chapter03.URL
+import fastcampus.aop.part4.chapter03.Key
+import fastcampus.aop.part4.chapter03.Url
 import fastcampus.aop.part4.chapter03.model.poi.schema.response.address.AddressInfoResponse
 import fastcampus.aop.part4.chapter03.model.poi.schema.response.search.SearchResponse
 import retrofit2.Response
@@ -11,9 +11,9 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET(URL.GET_TMAP_LOCATION)
+    @GET(Url.GET_TMAP_LOCATION)
     suspend fun getSearchLocation(
-        @Header("appKey") appKey: String = KEY.TMAP_API,
+        @Header("appKey") appKey: String = Key.TMAP_API,
         @Query("version") version: Int = 1,
         @Query("callback") callback: String? = null,
         @Query("count") count: Int = 20,
@@ -30,9 +30,9 @@ interface ApiService {
         @Query("centerLat") centerLat: String? = null
     ): Response<SearchResponse>
 
-    @GET(URL.GET_TMAP_REVERSE_GEO_CODE)
+    @GET(Url.GET_TMAP_REVERSE_GEO_CODE)
     suspend fun getReverseGeoCode(
-        @Header("appKey") appKey: String = KEY.TMAP_API,
+        @Header("appKey") appKey: String = Key.TMAP_API,
         @Query("version") version: Int = 1,
         @Query("callback") callback: String? = null,
         @Query("lat") lat: Double,

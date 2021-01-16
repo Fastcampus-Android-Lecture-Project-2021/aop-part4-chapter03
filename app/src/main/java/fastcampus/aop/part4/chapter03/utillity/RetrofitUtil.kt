@@ -1,7 +1,7 @@
 package fastcampus.aop.part4.chapter03.utillity
 
 import fastcampus.aop.part4.chapter03.BuildConfig
-import fastcampus.aop.part4.chapter03.URL
+import fastcampus.aop.part4.chapter03.Url
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,7 +15,7 @@ object RetrofitUtil {
     private fun getRetrofit(): Retrofit {
 
         return Retrofit.Builder()
-            .baseUrl(URL.TMAP_URL)
+            .baseUrl(Url.TMAP_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(buildOkHttpClient())
             .build()
