@@ -1,6 +1,6 @@
 package fastcampus.aop.part4.chapter03.utillity
 
-import fastcampus.aop.part4.BuildConfig
+import com.aop.aop_part4_chatper03.BuildConfig
 import fastcampus.aop.part4.chapter03.URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
