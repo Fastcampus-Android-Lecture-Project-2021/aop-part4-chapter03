@@ -7,12 +7,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import fastcampus.aop.part4.chapter03.MapActivity.Companion.SEARCH_RESULT_EXTRA_KEY
+import fastcampus.aop.part4.chapter03.databinding.ActivityMainBinding
 import fastcampus.aop.part4.chapter03.model.poi.schema.response.search.Poi
 import fastcampus.aop.part4.chapter03.model.poi.schema.response.search.Pois
 import fastcampus.aop.part4.chapter03.model.poi.schema.entity.LocationLatLngEntity
 import fastcampus.aop.part4.chapter03.model.poi.schema.entity.SearchResultEntity
 import fastcampus.aop.part4.chapter03.utillity.RetrofitUtil
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import java.lang.Exception
 import kotlin.coroutines.CoroutineContext
@@ -24,24 +24,32 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
 
-    private val adapter by lazy { SearchRecyclerAdapter() }
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var adapter: SearchRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         job = Job()
+
+        initAdapter()
         initViews()
         bindViews()
-
         initData()
     }
 
-    private fun initViews() {
+    private fun initAdapter() {
+        adapter = SearchRecyclerAdapter()
+    }
+
+    private fun initViews() = with(binding) {
         emptyResultTextView.isVisible = false
         recyclerView.adapter = adapter
     }
 
-    private fun bindViews() {
+    private fun bindViews() = with(binding) {
         searchButton.setOnClickListener {
             searchKeyword(searchBarInputView.text.toString())
         }

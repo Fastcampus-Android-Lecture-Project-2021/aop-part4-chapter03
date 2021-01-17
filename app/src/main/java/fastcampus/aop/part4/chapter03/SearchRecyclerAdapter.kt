@@ -1,23 +1,28 @@
 package fastcampus.aop.part4.chapter03
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import fastcampus.aop.part4.chapter03.databinding.ViewholderSearchResultItemBinding
 import fastcampus.aop.part4.chapter03.model.poi.schema.entity.SearchResultEntity
-import kotlinx.android.synthetic.main.viewholder_search_result_item.view.*
 
 class SearchRecyclerAdapter : RecyclerView.Adapter<SearchRecyclerAdapter.SearchResultItemViewHolder>() {
 
     private var searchResultList: List<SearchResultEntity> = listOf()
     lateinit var searchResultClickListener: (SearchResultEntity) -> Unit
 
-    class SearchResultItemViewHolder(itemView: View, val searchResultClickListener: (SearchResultEntity) -> Unit) : RecyclerView.ViewHolder(itemView) {
+    class SearchResultItemViewHolder(
+        private val binding: ViewholderSearchResultItemBinding,
+        val searchResultClickListener: (SearchResultEntity) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bindData(data: SearchResultEntity) = with(itemView) {
-            textTextView.text = "${data.fullAdress}"
-            subtextTextView.text = "${data.name}"
-            setOnClickListener {
+        fun bindData(data: SearchResultEntity) = with(binding) {
+            textTextView.text = data.fullAdress
+            subtextTextView.text = data.name
+        }
+
+        fun bindViews(data: SearchResultEntity) {
+            binding.root.setOnClickListener {
                 searchResultClickListener(data)
             }
         }
@@ -25,7 +30,7 @@ class SearchRecyclerAdapter : RecyclerView.Adapter<SearchRecyclerAdapter.SearchR
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(viewType, parent, false)
+        val view = ViewholderSearchResultItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return SearchResultItemViewHolder(view, searchResultClickListener)
     }
 
@@ -33,6 +38,7 @@ class SearchRecyclerAdapter : RecyclerView.Adapter<SearchRecyclerAdapter.SearchR
 
     override fun onBindViewHolder(holder: SearchResultItemViewHolder, position: Int) {
         holder.bindData(searchResultList[position])
+        holder.bindViews(searchResultList[position])
     }
 
     override fun getItemCount(): Int = searchResultList.size

@@ -23,7 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.activity_map.*
+import fastcampus.aop.part4.chapter03.databinding.ActivityMapBinding
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
@@ -35,6 +35,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, CoroutineScope {
         const val CAMERA_ZOOM_LEVEL = 17f
     }
 
+    private lateinit var binding: ActivityMapBinding
     private lateinit var map: GoogleMap
     private lateinit var searchResult: SearchResultEntity
     private lateinit var locationManager: LocationManager
@@ -49,7 +50,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, CoroutineScope {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_map)
+        binding = ActivityMapBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         job = Job()
 
@@ -62,7 +64,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, CoroutineScope {
         bindViews()
     }
 
-    private fun bindViews() {
+    private fun bindViews() = with(binding) {
         currentLocationButton.setOnClickListener {
             getMyLocation()
         }
